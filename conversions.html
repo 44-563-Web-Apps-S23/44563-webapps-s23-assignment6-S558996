@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Conversions created</title>
+    </head>
+ 
+<body>
+
+<h2>Mahesh Kollipara shows currency conversions</h2>
+
+<form>
+    <label for="base">Enter base amount :</label>
+    <input type ="number" id="base" value=50> 
+
+    <label for="conversion">Enter the conversion rate :</label>
+    <input type ="number" id="conversion" value=35> <br>
+    <br>
+    <input type="button" onclick="convert()" value="Show conversions">
+</form>
+<p id="result">Result will display </p>
+
+<form>
+    <input type="radio" id="average" name="calculations" onclick="chooseOp()" value="mean"  checked >
+    <label for="average">average</label></br>
+  
+    <input type="radio" id="max" name="calculations" onclick="chooseOp()" value="maximum">
+    <label for="min">max</label></br>
+  
+    <input type="radio" id="min" name="calculations" onclick="chooseOp()" value="minimum">
+    <label for="min">min</label></br>
+  </form>
+  <p id="result2"> Result will display</p>
+
+  <script> 
+
+    function convert(){
+        base = document.getElementById("base").value;
+        value= document.getElementById("conversion").value;
+        toShow="";
+        out = document.getElementById("result")
+        
+        for(let i=0;i<5;i++){
+            
+            let conversion=base*value;
+            toShow=toShow+" "+ base +" is "+ Number(conversion.toFixed(1))+";";
+            base=base*2
+        }
+        document.getElementById("result").innerHTML = "Conversions are:" + toShow;
+    }
+    
+    function chooseOp(){
+        let results = 0;
+                const base = Number(document.getElementById("base").value);
+                const conversion = Number(document.getElementById("conversion").value);
+                let showOut = "";
+                let average = document.getElementById("average").checked;
+                let max = document.getElementById("max").checked;
+                let min = document.getElementById("min").checked;
+                if (average) {
+                    const value = (base + conversion)/2;
+                    showOut = "Average of "+base+" and "+conversion+" is "+value;
+                }
+                else if (max) {
+                    const value = Math.max(base,conversion);
+                    showOut = "Max of "+base+" and "+conversion+" is "+value;
+                }
+                else if (min) {
+                    const value = Math.min(base,conversion);
+                    showOut = "Miin of "+base+" and "+conversion+" is "+value;
+                }
+                document.getElementById("result2").innerHTML = showOut;
+    }
+    </script>
+    
+    </body>
+    </html>
